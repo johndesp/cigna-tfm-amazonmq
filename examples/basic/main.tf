@@ -1,13 +1,14 @@
 module "basic" {
   source = "../../"
 
-  broker_name        = "${var.namespace}-${var.stage}-${var.name}"
-  engine_version     = var.rabbitmq_engine_version
-  host_instance_type = var.rabbitmq_host_instance_type
-  security_groups    = [module.mq_rabbitmq_sg.this_security_group_id]
-  subnet_ids         = [module.vpc.private_subnets[0]]
-  username           = var.rabbitmq_username
-  password           = random_password.rabbitmq_password.result
-  tags               = var.tags
+  broker_name        = "jd-terraform"
+  engine_version     = "3.8.17"
+  host_instance_type = "mq.t3.micro"
+  security_groups    = ["sg-0d44f1ae427d11697"]
+  deployment_mode    = "CLUSTER_MULTI_AZ"
+  subnet_ids         = ["subnet-b656c4ff", "subnet-027cfc538602413da"]
+  username           = "admin"
+  password           = "Jaclyn8jordyn$1"
+  tags               = local.common_tags
 }
 
